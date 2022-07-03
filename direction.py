@@ -35,3 +35,9 @@ class Direction():
     def get_radians(self):
         """returns the value of the angle in radians."""
         return self._radians
+
+    def add_radians(self, radians):
+        """
+        adds two angles in radians together to generate a new angle
+        """
+        self._radians += radians
