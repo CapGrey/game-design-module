@@ -41,3 +41,12 @@ class Direction():
         adds two angles in radians together to generate a new angle
         """
         self._radians += radians
+
+    
+    def _convert_to_deg(self):
+        """converts radians to degrees."""
+        return (180 / math.pi) * self._radians
+
+    def get_degrees(self):
+        """returns the value of the angle in degrees""" 
+        return self._convert_to_deg()

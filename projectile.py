@@ -55,8 +55,9 @@ class Projectile():
             (self._vel.get_dy() * time) + (0.5 * accel.get_ddy() * (time ** 2))
         )
 
-    def draw(self, display):
-        pass
+    def draw(self, display, num):
+        """draws the projectile."""
+        display.draw_projectile(num, self._position)
 
     def flying(self, ground):
         """determines if the projectile is flying.

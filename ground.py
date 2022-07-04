@@ -73,72 +73,15 @@ class Ground():
         return (pos_tank_1, pos_tank_2)
 
 
-    #come back and fix this after making display class
-    """
+    
     def draw(self, display):
-        #  put the meter markers along the side
-        for y_pos in range(0, math.ceil(self._screen_size.get_pixels_y()), 1000):
-            
-            left_pos = Position()
-            left_pos.set_meters_x(0)
-            left_pos.set_meters_y(y_pos)
+        """draws the ground."""
+        # iterate through the entire ground and draw it all
+        width = int(self._screen_size.get_pixels_x())
+        for x_pos in range(width):
+            display.draw_ground(x_pos, self._ground[x_pos])
+                  
 
-            right_pos = Position()
-            right_pos.set_meters_x(0)
-            right_pos.set_meters_y(y_pos)
-
-
-            posRight.setPixelsX(posUpperRight.getPixelsX());
-            gout.drawLine(posLeft, posRight, 0.85, 0.85, 0.85);
-
-
-        // iterate through the entire ground and draw it all
-        int width = (int)posUpperRight.getPixelsX();
-        for (int i = 0; i < width; i++)
-        {
-            Position posBottom;
-            Position posTop;
-            posBottom.setPixelsX((double)i);
-            posTop.setPixelsX((double)i + 1.0);
-            posTop.setPixelsY(ground[i]);
-            gout.drawRectangle(posBottom, posTop, 0.6 /*red*/, 0.4 /*green*/, 0.2 /*blue*/);
-        }
-
-        // draw the target
-        Position posTarget = getTarget();
-        gout.drawTarget(posTarget);
-
-        // put the kilometer markers along the bottom
-        for (Position pos(1000.0, 0.0); pos.getPixelsX() < posUpperRight.getPixelsX(); pos.addMetersX(1000.0))
-        {
-            Position posBottom(pos);
-            Position posTop(pos);
-            posTop.addPixelsY(10);
-            gout.drawLine(posTop, posBottom, 0.6, 0.6, 0.6);
-        }
-
-        // put the kilometer labels along the bottom
-        for (Position pos(5000.0, 0.0); pos.getPixelsX() < posUpperRight.getPixelsX(); pos.addMetersX(5000.0))
-        {
-            Position posText(pos);
-            posText.addPixelsY(15);
-            posText.addPixelsX(-10);
-
-            gout = posText;
-            gout << (int)(pos.getMetersX() / 1000.0) << "km";
-        }
-
-        // draw the altitude labels along the side
-        for (Position pos(0.0, 2000.0); pos.getPixelsY() < posUpperRight.getPixelsY(); pos.addMetersY(2000.0))
-        {
-            Position posText(pos);
-            posText.addPixelsX(5);
-            posText.addPixelsY(-2);
-
-            gout = posText;
-            gout << (int)(pos.getMetersY()) << "m";
-        }
-    """
     def get_elevation_meters(self, position):
         """returns the elevation of the ground."""
         pos_elevation = Position()

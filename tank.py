@@ -11,8 +11,10 @@ class Tank():
         self.hitbox = []
 
 
-    def draw(self, display):
-        pass
+    def draw(self, display, tank_num):
+        """draws the tank."""
+        display.update_tank(self._muzzle_angle.get_degrees(), 
+            tank_num, self._pos)
 
     def get_position(self):
         """returns the position of the tank"""
