@@ -81,33 +81,16 @@ class Velocity():
         both horizontal and vertical components. """
         self._dx += vel._dx
         self._dy += vel._dy
+   
+    def _compute_horz_component(self, angle, total):
+        """returns the horizontal velocity"""
+        return math.cos(angle) * total
 
-    def reverse(self):
-        """reverses the velocity"""
-        self._dx = -1 * self._dx
-        self._dy = -1 * self._dy
+    def _compute_vert_component(self, angle, total):
+        """returns the vertical velocity"""
+        return math.sin(angle) * total
 
-"""
-vel = Velocity()
-
-vel.set_dx(300)
-vel.set_dy(300)
-direction = vel.get_direction()
-print(f"The angle is: {direction.get_radians()}")
-# pi / 4 = 0.78539816
-
-vel.set_dx_dy(-300, 300)
-direction = vel.get_direction()
-print(f"The angle is: {direction.get_radians()}")
-#  3pi / 4 = 2.35619449
-
-vel.set_dx_dy(-300, -300)
-direction = vel.get_direction()
-print(f"The angle is: {direction.get_radians()}")
-# 5pi / 4 = 3.926990
-
-vel.set_dx_dy(300, -300)
-direction = vel.get_direction()
-print(f"The angle is: {direction.get_radians()}")
-# 7pi / 4 = 5.4977871
-"""
+    def compute_vel_from_total(self, angle, total):
+        """sets the velocity based on angle and speed"""
+        self._dx = self._compute_horz_component(angle, total)
+        self._dy = self._compute_vert_component(angle, total)

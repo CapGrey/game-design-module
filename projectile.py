@@ -16,20 +16,22 @@ class Projectile():
     def reset(self):
         """resets the projectile to be fired again."""
         # reset position
-        self._position.set_meters_x(0)
-        self._position.set_meters_y(0)
+        self._position.set_pixels_x(0)
+        self._position.set_pixels_y(0)
 
         # reset velocity
         self._vel.set_dx_dy(0, 0)
 
         # reset angle
         self._angle = 0
+        self.flight_status = False
 
     def fire(self, position, angle, velocity):
         """Launches the projectile from the tank's position"""
         self._position = position
         self._angle = angle
         self._vel = velocity
+        self.flight_status = True
 
     def advance(self, time, drag):
         """Moves the projectile based time elapsed and drag force."""
@@ -59,15 +61,6 @@ class Projectile():
         """draws the projectile."""
         display.draw_projectile(num, self._position)
 
-    def flying(self, ground):
-        """determines if the projectile is flying.
-        sets to false for hitting the ground or not being fired."""
-        if (self._position.get_meters_y() > ground.get_elevation_meters()
-            and self._vel != 0):
-            self.flight_status = True
-        
-        self.flight_status = False
-
     def get_altitude(self):
         """returns the projectile's altitude in meters"""
         return self._position.get_meters_y()
@@ -83,3 +76,4 @@ class Projectile():
     def set_radius(self, radius):
         """sets the radius of the projectile in meters."""
         self._radius = radius
+

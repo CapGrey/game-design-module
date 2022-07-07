@@ -1,3 +1,4 @@
+import constants
 from position import Position
 from direction import Direction
 import math
@@ -19,6 +20,14 @@ class Tank():
     def get_position(self):
         """returns the position of the tank"""
         return self._pos
+    
+    def get_projectile_launch_position(self):
+        """returns the position of where the projectile
+        leaves the tank"""
+        temp_pos = Position()
+        temp_pos.set_meters_x(self._pos.get_meters_x())
+        temp_pos.set_meters_y(self._pos.get_meters_y() + constants.DISTANCE_BETWEEN_CANNON_TANK)
+        return temp_pos
 
     def get_muzzle_vel(self):
         """returns the muzzle velocity of the tank"""

@@ -19,12 +19,12 @@ class Ground():
         width = math.floor(self._screen_size.get_pixels_x())
 
         # determing the positions of the tanks
-        self._itank_1 = math.floor(pos_tank_1.get_pixels_x)
+        self._itank_1 = math.floor(random.randint(0, width))
         if self._itank_1 > width / 2:
             self._itank_2 = random.randint(1, math.floor(width / 2))
         
         else:
-            self._itank_2 = random.randint(math.ceil(width / 2), math.floor(self._screen_size.get_pixels_x))
+            self._itank_2 = random.randint(math.ceil(width / 2), math.floor(self._screen_size.get_pixels_x()))
         
         # determine the altitude limits
         min_pos = Position()
@@ -36,8 +36,8 @@ class Ground():
         max_pos.set_meters_y(constants.MAX_ALTITUDE)
 
         # set the elevation for the ground at each location
-        self._ground[0] = min_pos.get_pixels_y()  # the initial elevation is low
-        dy = constants.MAX_SLOPE / 2  # the initial slope is heavily biased to up
+        self._ground[0] = min_pos.get_pixels_y()  
+        dy = constants.MAX_SLOPE / 2  
         for i in range(1, width):
             # put the tanks on flat ground
             if (i > self._itank_1 - constants.WIDTH_TANK / 2 and
@@ -53,7 +53,7 @@ class Ground():
                 percent = (self._ground[i - 1] - min_pos.get_pixels_y()) / (max_pos.get_pixels_y() - min_pos.get_pixels_y())
 
                 # set the slope of the ground
-                dy += (1.0 - percent) * random.randint(0.0, constants.LUMPINESS) + (percent) * random(-constants.LUMPINESS, 0.0)
+                dy += (1.0 - percent) * (random.randrange(0, constants.LUMPINESS) / 100) + (percent) * (random.randrange(-constants.LUMPINESS, 0) / 100)
                 if dy > constants.MAX_SLOPE:
                     dy = constants.MAX_SLOPE
                 if dy < -constants.MAX_SLOPE:
@@ -96,17 +96,3 @@ class Ground():
             pos_elevation.set_pixels_y(0)
         
         return pos_elevation.get_meters_y()
-
-    def get_tank_1_position(self):
-        """returns the position of tank 1"""
-        pos_tank_1 = Position()
-        pos_tank_1.set_pixels_x(self._itank_1)
-        pos_tank_1.set_pixels_y(self._ground[self._itank_1])
-        return pos_tank_1
-    
-    def get_tank_2_position(self):
-        """returns the position of tank 2"""
-        pos_tank_2 = Position()
-        pos_tank_2.set_pixels_x(self._itank_2)
-        pos_tank_2.set_pixels_y(self._ground[self._itank_2])
-        return pos_tank_2

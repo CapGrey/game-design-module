@@ -1,11 +1,11 @@
-
+import constants
 
 class Position():
     
     def __init__(self):
         self._x = 0
         self._y = 0
-        self._pixels_to_meters = 0
+        self._pixels_to_meters = constants.PIXELS_TO_METERS
 
     def get_meters_x(self):
         """returns the x position."""
@@ -19,13 +19,13 @@ class Position():
         """
         converts meters into pixels and returns pixel value for x.
         """
-        return self._x / self._pixels_to_meters
+        return round(self._x / self._pixels_to_meters)
 
     def get_pixels_y(self):
         """
         converts meters into pixels and returns pixel value for y.
         """
-        return self._y / self._pixels_to_meters
+        return round(self._y / self._pixels_to_meters)
 
     def set_meters_x(self, meters_x):
         """sets the value for x position."""
@@ -60,11 +60,4 @@ class Position():
         """adds to y based on a given pixel distance."""
         self.set_pixels_y(self.get_pixels_y() + pixels_y)
 
-    def set_pixels_zoom(self, pixels_to_meters):
-        """sets the ratio between pixels and meters"""
-        self._pixels_to_meters = pixels_to_meters
-
-    def get_pixels_zoom(self):
-        """returns the ratio between pixels and meters"""
-        return self._pixels_to_meters
-
+    

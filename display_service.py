@@ -8,7 +8,7 @@ class Display_Service():
         self._tank_2 = arcade.load_texture(constants.TANK_2_ASSET)
         self._cannon_1 = arcade.load_texture(constants.CANNON_1_ASSET)
         self._cannon_2 = arcade.load_texture(constants.CANNON_2_ASSET)
-        self._canon_1_angle = 90
+        self._cannon_1_angle = 90
         self._cannon_2_angle = 90
         self._bullet_1 = arcade.load_texture(constants.BULLET_1)
         self._bullet_2 = arcade.load_texture(constants.BULLET_2)
@@ -20,7 +20,7 @@ class Display_Service():
     def update_tank(self, tank_angle, tank_num, position):
         """Updates the tank's cannon angle"""
         if tank_num == 1:
-            self._canon_1_angle = tank_angle
+            self._cannon_1_angle = tank_angle
             arcade.draw_scaled_texture_rectangle(
                 position.get_pixels_x(), position.get_pixels_y(),
                 self._tank_1, constants.TANK_SCALE, 0)
@@ -28,7 +28,7 @@ class Display_Service():
             arcade.draw_scaled_texture_rectangle(
                 position.get_pixels_x(),
                 position.get_pixels_y() + constants.DISTANCE_BETWEEN_CANNON_TANK,
-                self._cannon_1, self._canon_1_angle)
+                self._cannon_1, constants.CANNON_SCALE, self._cannon_1_angle)
 
         else:
             self._cannon_2_angle = tank_angle
@@ -39,7 +39,7 @@ class Display_Service():
             arcade.draw_scaled_texture_rectangle(
                 position.get_pixels_x(),
                 position.get_pixels_y() + constants.DISTANCE_BETWEEN_CANNON_TANK,
-                self._cannon_2, self._canon_2_angle)
+                self._cannon_2, constants.CANNON_SCALE, self._cannon_2_angle)
         
 
 
@@ -64,4 +64,4 @@ class Display_Service():
     def draw_ground(self, x_pos, y_limit):
         """draws one section of the ground."""
         arcade.draw_rectangle_filled(x_pos, y_limit / 2, 1, y_limit,
-        self._background_color)
+        self._ground_color)

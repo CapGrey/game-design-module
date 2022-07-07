@@ -27,11 +27,6 @@ class Direction():
         """sets the values of radians after normalizing."""
         self._radians = self._normalize_radians(radians)
         
-
-    def reverse(self):
-        """Reverses the value of the radians."""
-        self._radians = self._normalize_radians(self._radians + math.pi)
-
     def get_radians(self):
         """returns the value of the angle in radians."""
         return self._radians
@@ -42,7 +37,6 @@ class Direction():
         """
         self._radians += radians
 
-    
     def _convert_to_deg(self):
         """converts radians to degrees."""
         return (180 / math.pi) * self._radians

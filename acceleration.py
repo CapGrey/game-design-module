@@ -49,7 +49,7 @@ class Acceleration():
         gravity = self._compute_gravity_accel(altitude)
 
         self._ddx = self._compute_horz_component(angle, total_accel)
-        self._ddy = self._compute_vert_component(angle, total_accel)
+        self._ddy = -self._compute_vert_component(angle, total_accel)
         self._ddy -= gravity
 
     def _compute_interpolation(self, points):
@@ -174,11 +174,11 @@ class Acceleration():
     
     def _compute_horz_component(self, angle, total):
         """returns the horizontal acceleration"""
-        return math.sin(angle) + total
+        return math.cos(angle) * total
 
     def _compute_vert_component(self, angle, total):
         """returns the vertical acceleration"""
-        return math.cos(angle) + total
+        return math.sin(angle) * total
     
 
 
